@@ -1,14 +1,22 @@
 version: '3.9'
 
 services:  
-  pgadmin:
-      container_name: pgadmin4_container
-      image: dpage/pgadmin4
+  server:
+      container_name: solace-subscriber
+      build:
+          context: .
+          dockerfile: Dockerfile
+      image: solace-subscriber:latest
       environment:
-          - PGADMIN_DEFAULT_EMAIL=kiehast@gmail.com
-          - PGADMIN_DEFAULT_PASSWORD=admin
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://database-2.c1os8mensd7x.ap-southeast-2.rds.amazonaws.com:5432/solace     
+        - SPRING_DATASOURCE_USERNAME=postgres
+        - SPRING_DATASOURCE_PASSWORD=Thursday5$
+        - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+        - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+        - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
+
       ports:
-          - "5050:80"
+        - 8080:8080
   
 networks:
   default:

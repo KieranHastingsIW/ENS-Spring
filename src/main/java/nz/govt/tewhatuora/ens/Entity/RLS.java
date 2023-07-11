@@ -2,6 +2,8 @@ package nz.govt.tewhatuora.ens.Entity;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,15 +11,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
-
-
 @RequiredArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 @Entity
-@Table(name = "new_table_for_test")
+@Table(name = "RLS")
 public class RLS {
 
     @Id
@@ -25,27 +24,27 @@ public class RLS {
     private long EventTransactionId;
     
     @NonNull
-    @Column(name = "resource_type", nullable = false)
+    @Column(name = "ResourceType", nullable = false)
     private String ResourceType;
     
     @NonNull
-    @Column(name = "source", nullable = false)
+    @Column(name = "Source", nullable = false)
     private String Source;
 
     @NonNull
-    @Column(name = "role_id", nullable = true)
+    @Column(name = "RoleId", nullable = true)
     private String RoleId;
 
-    @NonNull
-    @Column(name = "event_received_date", nullable = false)
-    private String EventReceivedDate;
+
+    @Column(name = "EventReceivedDate", nullable = false)
+    private LocalDate EventReceivedDate;
     
     @NonNull
-    @Column(name = "url", nullable = false)
+    @Column(name = "URL", nullable = false)
     private String URL;
 
     @NonNull
-    @Column(name = "status", nullable = false)
+    @Column(name = "Status", nullable = false)
     private String Status;
 }
 

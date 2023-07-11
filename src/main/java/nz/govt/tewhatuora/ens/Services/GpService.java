@@ -1,10 +1,13 @@
 package nz.govt.tewhatuora.ens.Services;
 
-import nz.govt.tewhatuora.ens.Entity.RLS;
+
+import org.springframework.http.HttpStatus;
+
+
 
 public interface GpService {
     String json(String string);
-    String email(String string);
-    void db(RLS payload);
+    HttpStatus email(String string);
+    void db(String payload);
 
 }
