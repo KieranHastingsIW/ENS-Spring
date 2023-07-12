@@ -52,7 +52,7 @@ public class GpServiceImpl implements GpService {
             response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             System.out.println(response.statusCode());
             if (response.statusCode() == 500){
-                return HttpStatus.I_AM_A_TEAPOT;
+                return HttpStatus.GATEWAY_TIMEOUT;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,19 +64,28 @@ public class GpServiceImpl implements GpService {
 
     @Override
     public void db(String rlsString) {
-        System.out.println(rlsString);
+        // String filter = dBfilterMethod(rlsString);
+        // System.out.println(rlsString);
+
+        //String[] payload is a list of all values sent in the use casses only 4 items passed
+        // not sure which items are to be defined by the filtering 
+        // duplicate everything here for the Cache section
         String[] payload = rlsString.split(",");
         RLS rlsPayload = new RLS();
         rlsPayload.setResourceType(payload[0]);
         rlsPayload.setSource(payload[1]);
         rlsPayload.setRoleId(payload[2]);
-
         LocalDate parse = LocalDate.parse(payload[3]);
         rlsPayload.setEventReceivedDate(parse);
         rlsPayload.setURL(payload[4]);
         rlsPayload.setStatus(payload[5]);
         rLSRepository.save(rlsPayload);
 
+    }
+
+    public String dBfilterMethod(String messageObject){
+     
+        return messageObject;
     }
 
 

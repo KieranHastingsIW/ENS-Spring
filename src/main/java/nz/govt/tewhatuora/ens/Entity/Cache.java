@@ -2,6 +2,7 @@ package nz.govt.tewhatuora.ens.Entity;
 
 import lombok.*;
 
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,9 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
-
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
@@ -24,27 +23,33 @@ public class Cache {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long EventTransactionId;
     
-    
-    @Column(name = "resource_type", nullable = false)
+    @NonNull
+    @Column(name = "ResourceType", nullable = false)
     private String ResourceType;
     
-    
-    @Column(name = "source", nullable = false)
+    @NonNull
+    @Column(name = "Source", nullable = false)
     private String Source;
 
-    
-    @Column(name = "role_id", nullable = false)
+    @NonNull
+    @Column(name = "RoleId", nullable = true)
     private String RoleId;
 
+
+    @Column(name = "EventReceivedDate", nullable = false)
+    private LocalDate EventReceivedDate;
     
-    @Column(name = "event_received_date", nullable = false)
-    private String EventReceivedDate;
-    
-    
-    @Column(name = "url", nullable = false)
+    @NonNull
+    @Column(name = "URL", nullable = false)
     private String URL;
 
-    
-    @Column(name = "status", nullable = false)
+    @NonNull
+    @Column(name = "Status", nullable = false)
     private String Status;
 }
+
+
+
+
+
+
