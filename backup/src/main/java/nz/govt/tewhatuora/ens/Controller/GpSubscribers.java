@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
@@ -32,7 +31,6 @@ public class GpSubscribers {
     }
     @PostMapping("/db")
     public ResponseEntity<HttpStatus> db(@Validated @RequestBody String rlsString) {
-        //TODO format change on solaceHeader, @RequestHeader("SOLACE HEADER HERE") String solaceHeader
         gpService.db(rlsString);
         // System.out.println(gpService.db(cache));
         return new ResponseEntity<>(HttpStatus.CREATED);
